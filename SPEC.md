@@ -47,15 +47,18 @@ Use `unit`, `integration`, and `e2e` pytest markers. Run `.venv/bin/python check
 ### Work record
 
 - Issue: [#1 — RPS-001: Play a round](https://github.com/JoshMathai/is218-rock-paper-scissors/issues/1).
-- Pull request: [#2 — RPS-001: Implement one Rock, Paper, Scissors round](https://github.com/JoshMathai/is218-rock-paper-scissors/pull/2) (**open; awaiting merge**).
-- Python checks: [successful CI run](https://github.com/JoshMathai/is218-rock-paper-scissors/actions/runs/41505234685) — Python checks completed successfully.
-- Implementation: Implemented and pushed on branch `rps-001`; it is available for review in pull request #2.
+- Pull request: [#2 — RPS-001: Implement one Rock, Paper, Scissors round](https://github.com/JoshMathai/is218-rock-paper-scissors/pull/2) (**merged into `main`**).
+- Python checks: [successful final PR commit run](https://github.com/JoshMathai/is218-rock-paper-scissors/actions/runs/41505947656) — Python checks completed successfully.
+- Implementation: Merged into `main` through pull request #2.
 - Unit outcomes in [tests/test_game.py](tests/test_game.py): rock/rock → tie; rock/paper → lose; rock/scissors → win; paper/rock → win; paper/paper → tie; paper/scissors → lose; scissors/rock → lose; scissors/paper → win; scissors/scissors → tie.
+- Test explanation: The Rock vs. Paper unit test catches an incorrect implementation that says Rock wins, because Paper covers Rock.
 - Integration test in [tests/test_game.py](tests/test_game.py): submits a real Flask POST with Rock, fixes the computer move to Paper, and checks both displayed choices and the player's loss using the real winner function. Existing supplied tests continue to cover missing and unsupported moves.
 - Browser test in [tests/e2e/test_round.py](tests/e2e/test_round.py): uses the supplied live server and browser fixtures to play Rock vs. Paper, then replay Scissors vs. Paper, checking both choices and each result against the real rules. Computer moves are fixed only in the test.
 - Automated checks: `.venv/bin/python check.py` — **PASS**. Black passed (11 files unchanged); Pylint passed; non-browser pytest: **23 passed, 6 deselected**; Chromium E2E: **6 passed, 23 deselected**.
-- Manual browser observations (reported by the student): the game announced the winner; Rock, Paper, and Scissors buttons worked; replay started another round; Tab, Enter, and Space keyboard navigation worked.
+- Manual round observation before implementation (reported by the student): the player chose Rock and the computer chose Scissors; the page displayed “Starter: game rules not built yet” instead of declaring a winner.
+- Manual round observation after implementation (reported by the student): the player chose Rock, the computer chose Paper, and the game displayed “Computer wins.” This is correct because Paper covers Rock.
+- Other manual browser observations (reported by the student): Rock, Paper, and Scissors buttons worked; replay started another round; Tab, Enter, and Space keyboard navigation worked.
 - AI assistance: AI helped implement the winner function, author the unit, integration, and browser tests, and update this work record. The student supplied the prediction and plan and reported the manual checks above.
-- Remaining delivery requirements: pull request #2 is still open. Merge into `main`, issue closure, and Canvas submission remain pending.
+- Delivery status: Pull request #2 is merged into `main`, and issue #1 is closed. The project is ready for Canvas submission.
 
 Evidence index: [Issue #1](https://github.com/JoshMathai/is218-rock-paper-scissors/issues/1) · [game.py](game.py) · [tests/test_game.py](tests/test_game.py) · [tests/e2e/test_round.py](tests/e2e/test_round.py).
