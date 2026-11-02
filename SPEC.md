@@ -27,11 +27,13 @@ Results are from the **player’s perspective**. `determine_winner(player, compu
 
 ### Agreed plan
 
-Before implementation, predict one matchup and explain it with your local coding agent. Discuss a short plan and checks. Once it makes sense, ask the agent to replace this paragraph with the agreed plan, preserving the expected results above. Continue in the same chat.
+Implement `determine_winner(player, computer)` from the player's perspective and keep the supplied page and server. Add nine literal unit cases, a real Flask request/result test using Rock vs. Paper with the computer move fixed, reuse the missing/unsupported-input checks (including `lizard` returning HTTP 400), and add a real-browser round and replay test using the real rules. Keep the feature to one independent round with no score or saved history.
+
+Prediction: Rock vs. Paper is a player loss because Paper covers Rock.
 
 ### Checks
 
-Before coding, agree this small test plan with AI:
+Agreed test plan:
 
 | Level | Cases and evidence |
 | --- | --- |
@@ -44,7 +46,16 @@ Use `unit`, `integration`, and `e2e` pytest markers. Run `.venv/bin/python check
 
 ### Work record
 
-- Issue: add your own issue URL.
-- Pull request / CI: add actual URLs when they exist.
-- Implementation: **Not implemented.** The shell is supplied; `game.py` is unfinished.
-- Checks: **Rules not verified.** Supplied request/browser tests cover the shell only. After implementation, record actual full-check results and your browser observations here; put detailed results in the PR. Passing formatting and analysis alone is not evidence of correct rules.
+- Issue: [#1 — RPS-001: Play a round](https://github.com/JoshMathai/is218-rock-paper-scissors/issues/1).
+- Pull request: [#2 — RPS-001: Implement one Rock, Paper, Scissors round](https://github.com/JoshMathai/is218-rock-paper-scissors/pull/2) (**open; awaiting merge**).
+- Python checks: [successful CI run](https://github.com/JoshMathai/is218-rock-paper-scissors/actions/runs/41505234685) — Python checks completed successfully.
+- Implementation: Implemented and pushed on branch `rps-001`; it is available for review in pull request #2.
+- Unit outcomes in [tests/test_game.py](tests/test_game.py): rock/rock → tie; rock/paper → lose; rock/scissors → win; paper/rock → win; paper/paper → tie; paper/scissors → lose; scissors/rock → lose; scissors/paper → win; scissors/scissors → tie.
+- Integration test in [tests/test_game.py](tests/test_game.py): submits a real Flask POST with Rock, fixes the computer move to Paper, and checks both displayed choices and the player's loss using the real winner function. Existing supplied tests continue to cover missing and unsupported moves.
+- Browser test in [tests/e2e/test_round.py](tests/e2e/test_round.py): uses the supplied live server and browser fixtures to play Rock vs. Paper, then replay Scissors vs. Paper, checking both choices and each result against the real rules. Computer moves are fixed only in the test.
+- Automated checks: `.venv/bin/python check.py` — **PASS**. Black passed (11 files unchanged); Pylint passed; non-browser pytest: **23 passed, 6 deselected**; Chromium E2E: **6 passed, 23 deselected**.
+- Manual browser observations (reported by the student): the game announced the winner; Rock, Paper, and Scissors buttons worked; replay started another round; Tab, Enter, and Space keyboard navigation worked.
+- AI assistance: AI helped implement the winner function, author the unit, integration, and browser tests, and update this work record. The student supplied the prediction and plan and reported the manual checks above.
+- Remaining delivery requirements: pull request #2 is still open. Merge into `main`, issue closure, and Canvas submission remain pending.
+
+Evidence index: [Issue #1](https://github.com/JoshMathai/is218-rock-paper-scissors/issues/1) · [game.py](game.py) · [tests/test_game.py](tests/test_game.py) · [tests/e2e/test_round.py](tests/e2e/test_round.py).
