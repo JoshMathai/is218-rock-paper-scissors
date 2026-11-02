@@ -47,14 +47,15 @@ Use `unit`, `integration`, and `e2e` pytest markers. Run `.venv/bin/python check
 ### Work record
 
 - Issue: [#1 — RPS-001: Play a round](https://github.com/JoshMathai/is218-rock-paper-scissors/issues/1).
-- Pull request / CI: **Pending.** No pull request or CI run URL is available yet.
-- Implementation: Implemented locally in [game.py](game.py); changes are not committed or pushed.
+- Pull request: [#2 — RPS-001: Implement one Rock, Paper, Scissors round](https://github.com/JoshMathai/is218-rock-paper-scissors/pull/2) (**open; awaiting merge**).
+- Python checks: [successful CI run](https://github.com/JoshMathai/is218-rock-paper-scissors/actions/runs/41505234685) — Python checks completed successfully.
+- Implementation: Implemented and pushed on branch `rps-001`; it is available for review in pull request #2.
 - Unit outcomes in [tests/test_game.py](tests/test_game.py): rock/rock → tie; rock/paper → lose; rock/scissors → win; paper/rock → win; paper/paper → tie; paper/scissors → lose; scissors/rock → lose; scissors/paper → win; scissors/scissors → tie.
 - Integration test in [tests/test_game.py](tests/test_game.py): submits a real Flask POST with Rock, fixes the computer move to Paper, and checks both displayed choices and the player's loss using the real winner function. Existing supplied tests continue to cover missing and unsupported moves.
 - Browser test in [tests/e2e/test_round.py](tests/e2e/test_round.py): uses the supplied live server and browser fixtures to play Rock vs. Paper, then replay Scissors vs. Paper, checking both choices and each result against the real rules. Computer moves are fixed only in the test.
 - Automated checks: `.venv/bin/python check.py` — **PASS**. Black passed (11 files unchanged); Pylint passed; non-browser pytest: **23 passed, 6 deselected**; Chromium E2E: **6 passed, 23 deselected**.
 - Manual browser observations (reported by the student): the game announced the winner; Rock, Paper, and Scissors buttons worked; replay started another round; Tab, Enter, and Space keyboard navigation worked.
 - AI assistance: AI helped implement the winner function, author the unit, integration, and browser tests, and update this work record. The student supplied the prediction and plan and reported the manual checks above.
-- Remaining delivery requirements: no PR or final CI link, commit, push, merge into `main`, issue closure, or Canvas submission is recorded yet. The current `origin` remote uses HTTPS; the README's Git workflow expects SSH.
+- Remaining delivery requirements: pull request #2 is still open. Merge into `main`, issue closure, and Canvas submission remain pending.
 
 Evidence index: [Issue #1](https://github.com/JoshMathai/is218-rock-paper-scissors/issues/1) · [game.py](game.py) · [tests/test_game.py](tests/test_game.py) · [tests/e2e/test_round.py](tests/e2e/test_round.py).
